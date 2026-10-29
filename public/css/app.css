@@ -1258,3 +1258,221 @@ main.content {
         padding: 22px;
     }
 }
+/* ==========================================================================
+   Tambahan untuk halaman data (produk, kategori, supplier, transaksi)
+   ========================================================================== */
+
+/* Breadcrumb di atas judul halaman. */
+.crumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--slate-400);
+    text-transform: uppercase;
+}
+
+.crumb-nav a {
+    color: var(--indigo-600);
+}
+
+.crumb-nav a:hover {
+    text-decoration: underline;
+}
+
+.crumb-nav .current {
+    color: var(--slate-500);
+}
+
+/* Baris filter: select + input + tombol aksi. */
+.filter-grid {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    align-items: end;
+}
+
+.filter-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+/* Alias kelas form (kompatibel gaya Bootstrap) memakai tampilan form bawaan. */
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--slate-900);
+    background: var(--white);
+    border: 1px solid var(--slate-300);
+    border-radius: var(--radius-sm);
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.form-select {
+    appearance: none;
+    padding-right: 34px;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--slate-500) 50%),
+        linear-gradient(135deg, var(--slate-500) 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) 52%,
+        calc(100% - 13px) 52%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--indigo-600);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, .16);
+}
+
+/* Tabel bergaris selang-seling. */
+.table-striped tbody tr:nth-child(even) {
+    background: var(--slate-50);
+}
+
+.table-striped tbody tr:hover {
+    background: var(--indigo-50);
+}
+
+.table code {
+    padding: 2px 7px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: var(--indigo-700);
+    background: var(--indigo-50);
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+/* Grup tombol aksi di dalam sel tabel. */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Badge warna gaya Bootstrap (danger/warning/success). */
+.badge-danger { color: var(--red-700); background: var(--red-100); }
+.badge-warning { color: var(--amber-700); background: var(--amber-100); }
+.badge-success { color: var(--green-700); background: var(--green-100); }
+
+/* Tombol varian tambahan. */
+.btn-secondary {
+    color: var(--slate-700);
+    background: var(--slate-100);
+    border-color: var(--slate-300);
+}
+
+.btn-secondary:hover {
+    color: var(--slate-900);
+    background: var(--slate-200);
+    border-color: var(--slate-400);
+}
+
+.btn-info {
+    color: var(--indigo-700);
+    background: var(--indigo-50);
+    border-color: #c7d2fe;
+}
+
+.btn-info:hover {
+    color: var(--white);
+    background: var(--indigo-600);
+    border-color: var(--indigo-600);
+}
+
+.btn-warning {
+    color: var(--amber-700);
+    background: var(--amber-50);
+    border-color: #fde68a;
+}
+
+.btn-warning:hover {
+    color: var(--white);
+    background: var(--amber-600);
+    border-color: var(--amber-600);
+}
+
+/* Footer panel: info paginasi + link halaman. */
+.panel-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px;
+    font-size: 13.5px;
+    background: var(--slate-50);
+    border-top: 1px solid var(--slate-200);
+}
+
+.panel-foot nav {
+    margin-left: auto;
+}
+
+/* Paginasi bawaan Laravel (dirender tanpa Tailwind) memakai <svg> yang disembunyikan. */
+.panel-foot nav svg,
+.panel-foot nav [aria-hidden="true"] {
+    display: none;
+}
+
+.panel-foot nav > div:first-child {
+    display: none;
+}
+
+.panel-foot nav span[aria-current="page"] > span,
+.panel-foot nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    padding: 6px 10px;
+    margin: 0 2px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-700);
+    background: var(--white);
+    border: 1px solid var(--slate-300);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+}
+
+.panel-foot nav a:hover {
+    color: var(--indigo-700);
+    background: var(--indigo-50);
+    border-color: var(--indigo-600);
+}
+
+.panel-foot nav span[aria-current="page"] > span {
+    color: var(--white);
+    background: var(--indigo-600);
+    border-color: var(--indigo-600);
+}
+
+.panel-foot nav span.cursor-default > span {
+    color: var(--slate-400);
+    background: var(--slate-50);
+}
+
+@media (max-width: 700px) {
+    .panel-foot {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .panel-foot nav {
+        margin-left: 0;
+    }
+}
+
