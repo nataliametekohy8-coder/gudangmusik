@@ -12,7 +12,8 @@ class Category extends Model
      *
      * @var list<string>
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
+
 
     /**
      * Relasi: satu kategori memiliki banyak produk.

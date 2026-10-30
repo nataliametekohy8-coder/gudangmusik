@@ -56,7 +56,7 @@
         "sort-packages": true,
         "audit": {
             "block-insecure": false
-    },
+     },
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
