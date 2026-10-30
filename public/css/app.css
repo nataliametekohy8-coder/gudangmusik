@@ -807,6 +807,21 @@ main.content {
     resize: vertical;
 }
 
+/* Select di dalam .field memakai panah dropdown yang sama dengan .form-select. */
+.field select {
+    appearance: none;
+    padding-right: 34px;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--slate-500) 50%),
+        linear-gradient(135deg, var(--slate-500) 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) 52%,
+        calc(100% - 13px) 52%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
 .field input::placeholder,
 .field textarea::placeholder {
     color: var(--slate-400);
@@ -1476,3 +1491,124 @@ main.content {
     }
 }
 
+
+
+/* ==========================================================================
+   Halaman detail produk (show)
+   ========================================================================== */
+
+.detail-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
+    align-items: start;
+}
+
+.detail-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 280px;
+    padding: 28px;
+    color: #e0e7ff;
+    background:
+        radial-gradient(circle at 25% 20%, rgba(124, 58, 237, .55) 0%, transparent 50%),
+        linear-gradient(150deg, var(--indigo-800) 0%, var(--indigo-950) 100%);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 14px 30px rgba(49, 46, 129, .25);
+}
+
+.detail-media > span {
+    font-size: 76px;
+    line-height: 1;
+}
+
+.detail-media small {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    color: #a5b4fc;
+    text-transform: uppercase;
+}
+
+.detail-info > h1 {
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.detail-sku {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+    font-size: 13.5px;
+    color: var(--slate-500);
+}
+
+.detail-sku code {
+    padding: 3px 9px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    color: var(--indigo-700);
+    background: var(--indigo-50);
+    border-radius: 6px;
+}
+
+.detail-stats {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    margin: 16px 0;
+}
+
+.detail-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius);
+}
+
+.detail-stat strong {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--slate-900);
+}
+
+.detail-actions {
+    margin-top: 18px;
+    gap: 10px;
+}
+
+.btn-success {
+    color: var(--white);
+    background: var(--green-600);
+    border-color: var(--green-600);
+}
+
+.btn-success:hover {
+    color: var(--white);
+    background: var(--green-700);
+    border-color: var(--green-700);
+}
+
+@media (max-width: 900px) {
+    .detail-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .detail-media {
+        min-height: 180px;
+    }
+
+    .detail-media > span {
+        font-size: 56px;
+    }
+}
