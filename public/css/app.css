@@ -230,9 +230,24 @@ h1, h2, h3, h4 {
 
 .sidebar-user .who {
     display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1 1 auto;
+    line-height: 1.3;
+    color: inherit;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+}
+
+.sidebar-user .who:hover {
+    text-decoration: none;
+}
+
+.sidebar-user .who-text {
+    display: flex;
     flex-direction: column;
     min-width: 0;
-    line-height: 1.3;
 }
 
 .sidebar-user .who strong {
@@ -466,6 +481,23 @@ main.content {
 .stat-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
+}
+
+/* Kartu statistik yang berupa link: tetap tampil sebagai kartu, bukan teks link. */
+a.stat-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+a.stat-card:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+a.stat-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, .25);
 }
 
 .stat-card .stat-top {
@@ -1679,21 +1711,38 @@ html body .login-shell .login-split {
 html body .login-shell .login-illustration-side {
     flex: 0 0 55% !important; max-width: 55% !important;
     background: #F3F4F6 !important;
-    padding: 40px !important;
+    /* Padding asimetris: atas kiri kanan lega untuk logo, bawah seimbang. */
+    padding: 40px 40px 30px 40px !important;
     display: flex !important; flex-direction: column !important;
     justify-content: space-between !important;
     position: relative !important; overflow: hidden !important;
 }
 html body .login-shell .login-logo {
-    font-size: 24px !important; font-weight: 800 !important;
+    font-size: 26px !important; font-weight: 800 !important;
     color: #4338CA !important;
-    display: flex !important; align-items: center !important; gap: 10px !important;
+    /* gap 4px: rapat bila markup logo memakai icon + <span> teks terpisah. */
+    display: flex !important; align-items: center !important; gap: 4px !important;
     z-index: 2 !important;
+    /* Jarak logo ke tepi atas/kiri dan ke ilustrasi di bawahnya. */
+    margin-top: 8px !important; margin-left: 8px !important;
+    margin-bottom: 32px !important;
+}
+/* Logo SVG GudangMusik: tinggi tetap 56px, lebar mengikuti rasio 232x60.
+   Jarak ikon gitar ke teks "GudangMusik" sudah dirapatkan langsung di dalam
+   file SVG (viewBox 232x60, teks mulai x=46), jadi CSS tidak boleh menambah
+   gap/margin lagi di antara ikon dan teks. */
+html body .login-shell .login-logo img {
+    height: 56px !important; width: auto !important;
+    max-height: 56px !important; max-width: 100% !important;
+    display: block !important;
+    /* Pastikan tidak ada margin tambahan yang melebarkan jarak ikon-teks. */
+    margin: 0 !important;
 }
 html body .login-shell .login-illustration {
     flex: 1 !important; display: flex !important;
     align-items: center !important; justify-content: center !important;
     position: relative !important; min-height: 400px !important;
+    margin-top: 20px !important;
 }
 html body .login-shell .login-illustration .blob {
     position: absolute !important;
@@ -1706,6 +1755,43 @@ html body .login-shell .login-illustration .blob {
 @keyframes blob-anim {
     0%,100% { border-radius: 40% 60% 70% 30% / 60% 40% 70% 30%; transform: rotate(0deg); }
     50% { border-radius: 60% 40% 30% 70% / 40% 60% 30% 70%; transform: rotate(180deg); }
+}
+/* Ilustrasi SVG di panel kiri: dibatasi supaya tidak memicu scroll. */
+.login-illustration-img {
+    width: 100%;
+    max-width: 420px;
+    max-height: 420px;
+    object-fit: contain;
+}
+/* Override `.login-illustration` (align-items/justify-content center) supaya
+   gambar bisa menyusut: tanpa min-height:0, flex item tidak mau mengecil di
+   bawah tinggi intrinsiknya dan tetap memicu scroll. */
+html body .login-shell .login-illustration-img {
+    min-width: 0; min-height: 0; display: block;
+}
+/* Foto toko musik (PNG) di panel kiri. */
+html body .login-shell .login-illustration-img {
+    width: 100% !important;
+    max-width: 550px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 40px rgba(67, 56, 202, 0.12) !important;
+}
+/* Paksa gambar panel kiri selalu terlihat (jaga-jaga bila ada rule lain yang
+   menyembunyikan / mengecilkan gambar). */
+html body .login-shell .login-illustration-img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: 550px !important;
+    height: auto !important;
+    min-height: 200px !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
 }
 html body .login-shell .music-icon {
     position: absolute !important; z-index: 1 !important;
@@ -1726,6 +1812,8 @@ html body .login-shell .music-icon.character { font-size: 80px !important; left:
 html body .login-shell .login-footer {
     font-size: 12px !important; color: #6B7280 !important;
     text-align: center !important; z-index: 2 !important;
+    /* Jarak gambar ilustrasi ke footer. */
+    margin-top: 24px !important;
 }
 html body .login-shell .login-form-side {
     flex: 0 0 45% !important; max-width: 45% !important;
@@ -1818,8 +1906,18 @@ html body .login-shell .login-alert-success {
         flex: 0 0 auto !important; max-width: 100% !important;
         height: 280px !important; padding: 20px !important; min-height: auto !important;
     }
-    html body .login-shell .login-logo { font-size: 20px !important; margin-bottom: 8px !important; }
-    html body .login-shell .login-illustration { min-height: 180px !important; }
+    /* Spacing versi mobile: lebih rapat dari desktop tapi tetap lega. */
+    html body .login-shell .login-logo {
+        font-size: 20px !important;
+        margin-top: 0 !important; margin-left: 0 !important;
+        margin-bottom: 16px !important;
+    }
+    html body .login-shell .login-logo img { height: 40px !important; max-height: 40px !important; }
+    html body .login-shell .login-illustration { min-height: 180px !important; margin-top: 12px !important; }
+    html body .login-shell .login-illustration-img {
+        max-width: 100% !important;
+        max-height: 200px !important;
+    }
     html body .login-shell .login-illustration .blob { width: 200px !important; height: 200px !important; }
     html body .login-shell .music-icon.guitar { font-size: 55px !important; left: 30% !important; top: 15% !important; }
     html body .login-shell .music-icon.drum { font-size: 40px !important; left: 12% !important; bottom: 15% !important; }
@@ -1839,3 +1937,4 @@ html body .login-shell .login-alert-success {
     html body .login-shell .login-illustration .blob { width: 160px !important; height: 160px !important; }
     html body .login-shell .login-form-container h1 { font-size: 28px !important; }
 }
+

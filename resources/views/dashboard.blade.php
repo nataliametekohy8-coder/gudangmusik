@@ -16,43 +16,43 @@
         </span>
     </section>
 
-    {{-- Kartu statistik. --}}
+    {{-- Kartu statistik (setiap kartu menuju halaman terkait). --}}
     <div class="stats-grid">
-        <div class="stat-card tone-indigo">
+        <a class="stat-card tone-indigo" href="{{ route('products.index') }}">
             <div class="stat-top">
                 <span class="stat-label">Total Produk</span>
                 <span class="stat-icon"><i class="ti ti-guitar-pick"></i></span>
             </div>
             <div class="stat-value">{{ number_format($totalProducts, 0, ',', '.') }}</div>
             <div class="stat-foot">Jenis produk terdaftar di gudang</div>
-        </div>
+        </a>
 
-        <div class="stat-card tone-green">
+        <a class="stat-card tone-green" href="{{ route('products.index') }}">
             <div class="stat-top">
                 <span class="stat-label">Total Unit Stok</span>
                 <span class="stat-icon"><i class="ti ti-packages"></i></span>
             </div>
             <div class="stat-value">{{ number_format($totalStock, 0, ',', '.') }}</div>
             <div class="stat-foot">Akumulasi seluruh stok produk</div>
-        </div>
+        </a>
 
-        <div class="stat-card tone-indigo">
+        <a class="stat-card tone-indigo" href="{{ route('products.index') }}">
             <div class="stat-top">
                 <span class="stat-label">Nilai Stok</span>
                 <span class="stat-icon"><i class="ti ti-cash-banknote"></i></span>
             </div>
             <div class="stat-value currency">Rp {{ number_format($stockValue, 0, ',', '.') }}</div>
             <div class="stat-foot">Dihitung dari stok &times; harga beli</div>
-        </div>
+        </a>
 
-        <div class="stat-card tone-amber {{ $lowStockCount > 0 ? 'is-alert' : '' }}">
+        <a class="stat-card tone-amber {{ $lowStockCount > 0 ? 'is-alert' : '' }}" href="{{ route('products.index', ['status' => 'low']) }}">
             <div class="stat-top">
                 <span class="stat-label">Stok Menipis</span>
                 <span class="stat-icon"><i class="ti ti-alert-triangle"></i></span>
             </div>
             <div class="stat-value">{{ number_format($lowStockCount, 0, ',', '.') }}</div>
             <div class="stat-foot">Produk dengan stok &le; stok minimum</div>
-        </div>
+        </a>
     </div>
 
     <div class="grid-2">
@@ -60,7 +60,9 @@
         <section class="panel">
             <div class="panel-head">
                 <h3><i class="ti ti-bell-ringing"></i> Produk Stok Menipis</h3>
-                <span class="muted">{{ $lowStockCount }} produk</span>
+                <a href="{{ route('products.index', ['status' => 'low']) }}" class="btn btn-sm btn-secondary">
+                    Lihat semua
+                </a>
             </div>
 
             <div class="panel-body flush">
@@ -151,7 +153,12 @@
     <section class="panel">
         <div class="panel-head">
             <h3><i class="ti ti-history"></i> 5 Transaksi Stok Terbaru</h3>
-            <span class="muted">Diurutkan dari tanggal terbaru</span>
+            <div class="actions">
+                <a href="{{ route('stock-transactions.create') }}" class="btn btn-sm btn-primary">
+                    <i class="ti ti-plus"></i> Catat
+                </a>
+                <a href="{{ route('stock-transactions.index') }}" class="btn btn-sm btn-secondary">Lihat semua</a>
+            </div>
         </div>
 
         <div class="panel-body flush">

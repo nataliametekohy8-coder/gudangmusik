@@ -12,7 +12,7 @@
 <body>
     {{-- Sidebar gelap (indigo). --}}
     <aside class="sidebar">
-        <a class="sidebar-brand" href="{{ url('/dashboard') }}">
+        <a class="sidebar-brand" href="{{ route('dashboard') }}">
             <span class="brand-mark"><i class="ti ti-music"></i></span>
             <span class="brand-text">
                 <strong>Gudang Alat Musik</strong>
@@ -23,17 +23,17 @@
         <nav class="sidebar-nav">
             <div class="nav-section">Utama</div>
 
-            <a class="nav-link {{ request()->routeIs('dashboard') ? 'is-active' : '' }}" href="{{ url('/dashboard') }}">
+            <a class="nav-link {{ request()->routeIs('dashboard') ? 'is-active' : '' }}" href="{{ route('dashboard') }}">
                 <i class="ti ti-layout-dashboard"></i>
                 <span>Dashboard</span>
             </a>
 
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ request()->routeIs('products.*') ? 'is-active' : '' }}" href="{{ route('products.index') }}">
                 <i class="ti ti-guitar-pick"></i>
                 <span>Produk</span>
             </a>
 
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ request()->routeIs('stock-transactions.*') ? 'is-active' : '' }}" href="{{ route('stock-transactions.index') }}">
                 <i class="ti ti-arrows-exchange"></i>
                 <span>Transaksi Stok</span>
             </a>
@@ -42,12 +42,12 @@
             @if (auth()->user()->role === 'admin')
                 <div class="nav-section">Master Data</div>
 
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ request()->routeIs('categories.*') ? 'is-active' : '' }}" href="{{ route('categories.index') }}">
                     <i class="ti ti-category"></i>
                     <span>Kategori</span>
                 </a>
 
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ request()->routeIs('suppliers.*') ? 'is-active' : '' }}" href="{{ route('suppliers.index') }}">
                     <i class="ti ti-truck-delivery"></i>
                     <span>Supplier</span>
                 </a>
@@ -56,11 +56,13 @@
 
         <div class="sidebar-foot">
             <div class="sidebar-user">
-                <span class="avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
-                <span class="who">
-                    <strong>{{ auth()->user()->name }}</strong>
-                    <small>{{ auth()->user()->role }}</small>
-                </span>
+                <a class="who" href="{{ route('dashboard') }}" title="Ke dashboard">
+                    <span class="avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
+                    <span class="who-text">
+                        <strong>{{ auth()->user()->name }}</strong>
+                        <small>{{ auth()->user()->role }}</small>
+                    </span>
+                </a>
 
                 {{-- Logout wajib POST + @csrf. --}}
                 <form method="POST" action="{{ route('logout') }}">
@@ -83,17 +85,7 @@
                 <h2>@yield('title', 'Dashboard')</h2>
             </div>
 
-            <div class="topbar-search">
-                <i class="ti ti-search"></i>
-                <input type="search" placeholder="Cari produk / SKU..." aria-label="Pencarian" readonly>
-            </div>
-
             <div class="topbar-meta">
-                <span class="topbar-date">
-                    <i class="ti ti-calendar"></i>
-                    {{ now()->translatedFormat('d M Y') }}
-                </span>
-
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="btn btn-danger btn-sm">

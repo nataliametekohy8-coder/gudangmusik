@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Kanvas 232x60 (dulu 280x60) supaya tidak ada ruang kosong di kanan logo.
+    Ikon "G" + gitar + aksen not menempati x ≈ -2 .. 44.4.
+    Teks "GudangMusik" (Poppins Bold 24px, letter-spacing -0.4) mulai di x=52,
+    jadi jarak ikon->teks lebih lega.
+    Teks berakhir di ±230 => pas dengan kanvas, tidak terpotong.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="232" height="60" viewBox="0 0 232 60" role="img" aria-labelledby="gmLogoTitle gmLogoDesc">
+    <title id="gmLogoTitle">GudangMusik</title>
+    <desc id="gmLogoDesc">Logo GudangMusik: huruf G berbentuk gitar dengan aksen not musik, subtitle Sistem Inventaris.</desc>
+
+    <defs>
+        <style type="text/css"><![CDATA[
+            @font-face {
+                font-family: 'Poppins Logo';
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+                src: url('https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecg.woff2') format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+            }
+            @font-face {
+                font-family: 'Poppins Logo';
+                font-style: normal;
+                font-weight: 700;
+                font-display: swap;
+                src: url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2') format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+            }
+            .gm-brand {
+                font-family: 'Poppins Logo', 'Poppins', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+            }
+        ]]></style>
+
+        <linearGradient id="gmGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4338CA"/>
+            <stop offset="100%" stop-color="#7C3AED"/>
+        </linearGradient>
+
+        <clipPath id="gmInnerClip" clipPathUnits="userSpaceOnUse">
+            <circle cx="24" cy="34" r="11"/>
+        </clipPath>
+
+        <path id="gmGuitarBody" d="M24 22.6
+            C27.3 22.6 28.8 24.2 28.4 26.5
+            C28.2 27.9 27.4 28.9 27 29.8
+            C27.9 29.1 28.9 28.6 30 28.7
+            C32 28.8 33.2 30.3 33.1 32.4
+            C33 34.5 31.8 35.8 30.9 36.6
+            C31.5 37 31.8 37.9 31.8 38.9
+            C31.8 41.7 29.3 43.6 24 43.6
+            C18.7 43.6 16.2 41.7 16.2 38.9
+            C16.2 37.9 16.5 37 17.1 36.6
+            C16.2 35.8 15 34.5 14.9 32.4
+            C14.8 30.3 16 28.8 18 28.7
+            C19.1 28.6 20.1 29.1 21 29.8
+            C20.6 28.9 19.8 27.9 19.6 26.5
+            C19.2 24.2 20.7 22.6 24 22.6
+            Z"/>
+
+        <path id="gmGuitarNeck" d="M30.2 30.6 L42.4 25.2 A1.5 1.5 0 0 1 43.6 27.9 L31.6 33.4 Z"/>
+
+        <circle id="gmGuitarHole" cx="24" cy="33.2" r="3.2"/>
+    </defs>
+
+    <path fill="url(#gmGradient)" fill-rule="evenodd"
+          d="M24 8
+             A26 26 0 1 1 6.5 13
+             L13.9 20.4
+             A15.8 15.8 0 1 0 24 18.2
+             L24 27.2
+             L41.5 27.2
+             L41.5 35.6
+             L24 35.6
+             A26 26 0 0 1 24 8
+             Z"/>
+
+    <g clip-path="url(#gmInnerClip)">
+        <use href="#gmGuitarNeck" fill="#FFFFFF"/>
+        <use href="#gmGuitarBody" fill="#FFFFFF"/>
+        <use href="#gmGuitarBody" fill="none" stroke="url(#gmGradient)" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M21.6 24.2 L21.6 42.4 M24 23.6 L24 43 M26.4 24.2 L26.4 42.4"
+              stroke="url(#gmGradient)" stroke-width="0.6" stroke-linecap="round" opacity="0.55"/>
+        <use href="#gmGuitarHole" fill="url(#gmGradient)"/>
+    </g>
+
+    <g fill="url(#gmGradient)">
+        <ellipse cx="36.2" cy="8.8" rx="2.7" ry="2.1" transform="rotate(-20 36.2 8.8)"/>
+        <path d="M38.5 8.2 L38.5 3.1 L40.5 3.1 L40.5 8.8 Z"/>
+        <path d="M40.5 6.9 Q44.4 8.4 43 11.9 Q42 9.7 40.5 9.2 Z"/>
+    </g>
+
+    <!-- Teks brand -->
+    <!-- x=52: digeser ke kanan -->
+    <text class="gm-brand" x="52" y="28"
+          font-size="24" font-weight="700" letter-spacing="-0.4"
+          fill="url(#gmGradient)">GudangMusik</text>
+
+    <!-- y=46: dinaikin sedikit, x=52: digeser ke kanan -->
+    <text class="gm-brand" x="52" y="46"
+          font-size="10" font-weight="400" letter-spacing="0.6"
+          fill="#6B7280">Sistem Inventaris</text>
+</svg>

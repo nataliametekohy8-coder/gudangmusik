@@ -4,16 +4,14 @@
 <div class="login-shell">
     <div class="login-split">
         <div class="login-illustration-side">
-            <div class="login-logo">🎸 <span>GudangMusik</span></div>
+            <div class="login-logo">
+                {{-- Logo gradient GudangMusik (SVG statis di public/images).
+                     Ukuran diatur lewat .login-logo img di public/css/app.css. --}}
+                <img src="{{ asset('images/logo-gudangmusik.svg') }}" alt="GudangMusik">
+            </div>
             <div class="login-illustration">
-                <div class="blob"></div>
-                <div class="music-icon guitar">🎸</div>
-                <div class="music-icon drum">🥁</div>
-                <div class="music-icon keyboard">🎹</div>
-                <div class="music-icon mic">🎤</div>
-                <div class="music-icon note-1">🎵</div>
-                <div class="music-icon note-2">🎶</div>
-                <div class="music-icon character">👨‍🎤</div>
+                {{-- Foto toko musik (PNG) menggantikan blob + ilustrasi SVG lama. --}}
+                <img src="{{ asset('images/toko-musik.png') }}" alt="Ilustrasi Toko Gudang Musik" class="login-illustration-img">
             </div>
             <div class="login-footer">© 2026 GudangMusik — Sistem Inventaris Alat Musik</div>
         </div>
