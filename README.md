@@ -17,7 +17,7 @@ Aplikasi web manajemen inventaris gudang untuk toko alat musik. Dibangun dengan 
 
 ## 🎬 Demo
 
-- **Live URL**: [URL Railway - akan diisi setelah deploy]
+- **Live URL**: [akan diisi setelah deploy]
 - **Video Demo**: [URL YouTube - akan diisi setelah rekam]
 - **Repository**: https://github.com/nataliametekohy8-coder/gudangmusik
 
